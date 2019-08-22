@@ -115,10 +115,8 @@ which parameters are sum up behind. <br/>
 <img src="file:///home/predator2/Pictures/SABER_parameters.png" alt="drawing" width="500"/>
 </p>
 
-Rainbow-IQN
+Rainbow-IQN: Comparison with Rainbow on SABER
 ------------ 
-
-##### Comparison with Rainbow on SABER
 
 We first re-implemented the current state-of-the-art Rainbow and evaluated 
 it on SABER. We discovered the same algorithm with different evaluation
