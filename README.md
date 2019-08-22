@@ -43,7 +43,7 @@ human normalized score has a median of 4 400% and a mean of
 to be compared to 200% and 800% of the current state-of-the-art 
 Rainbow!<br/>
 <p align="center">
-<img src="file:///home/predator2/Pictures/DQN_baseline_vs_world_record.png" 
+<img src="https://github.com/marintoro/Rainbow/blob/master/images_README/DQN_baseline_vs_world_record.png" 
 alt="drawing" width="500" />
 </p>
 
@@ -112,7 +112,7 @@ stuck. This leads to the SABER benchmark, a set of training and
 evaluation procedures allowing for fair comparison and for reproducibility,
 which parameters are sum up behind. <br/>
 <p align="center">
-<img src="file:///home/predator2/Pictures/SABER_parameters.png" alt="drawing" width="500"/>
+<img src="https://github.com/marintoro/Rainbow/blob/master/images_README/SABER_parameters.png" alt="drawing" width="500"/>
 </p>
 
 Rainbow-IQN: Comparison with Rainbow on SABER
@@ -132,7 +132,7 @@ didn't have enough computational power to run multiple seeds and more
 runs are needed to make a more confident SOTA claim.
 
 <p align="center">
-<img src="file:///home/predator2/Pictures/Rainbow_vs_RIQN.png" alt="drawing" width="800"/>
+<img src="https://github.com/marintoro/Rainbow/blob/master/images_README/Rainbow_vs_RIQN.png" alt="drawing" width="800"/>
 </p>
 
 Open-source implementation of distributed Rainbow-IQN: R-IQN Ape-X
@@ -162,7 +162,7 @@ The learner will also periodically update the weight of each actors
 as shown in schema below.<br/>
 
 <p align="center">
-<img src="file:///home/predator2/Pictures/Apex_image_TOREMAKE.png" 
+<img src="https://github.com/marintoro/Rainbow/blob/master/images_README/Apex_image_TOREMAKE.png" 
 alt="drawing" width="800"/>
 </p>
 
