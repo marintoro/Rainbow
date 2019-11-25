@@ -5,14 +5,14 @@ thus leading to bias in comparison. Moreover this was leading
 to difficulties to reproduce results of published works as some
 training or evaluation parameter are barely explained or sometimes
 not mentioned. To allow more reproducible and comparable DRL,
-we introduce SABER: a *S*tandardized *A*tari **BE**nchmark for 
+we introduce SABER: a **S**tandardized **A**tari **BE**nchmark for 
 general **R**einforcement learning algorithms. Furthurmore, we
 introduce a human world record baseline and argue that previous 
 claims of superhuman performance of DRL might not be accurate. 
 Finally, we propose a new state-of-the-art algorithm R-IQN by 
-combining the current state-of-the-art Rainbow along with Implicit 
-Quantile Networks (IQN). Last but not least, we released an open-source 
-implementation of distributed R-IQN following the ideas from the 
+combining the current state-of-the-art [Rainbow](https://arxiv.org/abs/1710.02298) along with Implicit 
+Quantile Networks ([IQN](https://arxiv.org/abs/1806.06923)). Last but not least, we released an open-source 
+[implementation](https://github.com/valeoai/rainbow-iqn-apex) of distributed R-IQN following the ideas from the 
 paper Ape-X!* 
 
 DQN's human baseline vs human world record on Atari Games 
@@ -20,10 +20,12 @@ DQN's human baseline vs human world record on Atari Games
 
 A common way to evaluate AI for games is to
 let agents compete against the best humans. Recent examples for DRL
-include the victory of AlphaGo versus Lee Sedol for Go, OpenAI Five
-on Dota 2 or AlphaStar versus Mana for StarCraft 2.That's why one of 
+include the victory of [AlphaGo versus Lee Sedol](https://deepmind.com/alphago-korea) for Go, 
+[OpenAI Five](https://openai.com/blog/openai-five/)
+on Dota 2 or [AlphaStar versus Mana](https://deepmind.com/blog/article/alphastar-mastering-real-time-strategy-game-starcraft-ii)
+ for StarCraft 2.That's why one of 
 the most used metric for evaluating RL agents on Atari is to 
-compare them to the human baseline introduced in DQN. <br/><br/>
+compare them to the human baseline introduced in [DQN](https://www.nature.com/articles/nature14236). <br/><br/>
 Previous works use the normalized human
 score, i.e. 0% is the score of a random player
 and 100% is the score of the human baseline,
@@ -64,7 +66,7 @@ other levels than the initial one, sometimes they are stuck in a loop
 giving small amount of reward etc... A really nice example of this is the game
 *Riverraid*. On this game, the agent must shoot everything and take fuel
 to survive: the agent die if there is a collision with an enemy or if out
-of fuel). But as shooting fuel actually gives point, the agent doesn't
+of fuel. But as shooting fuel actually gives point, the agent doesn't
 understand that he could play way longer and win way more point by 
 actually taking this fuel bonus and not shooting them!
 
@@ -110,7 +112,7 @@ reach *superhuman* performance. That's why we advocate to use infinite
 length time episode and only terminate when game is over or agent is 
 stuck. This leads to the SABER benchmark, a set of training and 
 evaluation procedures allowing for fair comparison and for reproducibility,
-which parameters are sum up behind. <br/>
+which parameters are sum up below. <br/>
 <p align="center">
 <img src="https://github.com/marintoro/Rainbow/blob/master/images_README/SABER_parameters.png" alt="drawing" width="500"/>
 </p>
@@ -166,7 +168,7 @@ as shown in schema below.<br/>
 alt="drawing" width="800"/>
 </p>
 
-This scheme allowed me to use R-IQN Ape-X for the task of autonomous 
+This scheme allowed us to use R-IQN Ape-X for the task of autonomous 
 driving using [CARLA](http://carla.org/) as environment. 
 That led me to win the
 [CARLA Challenge](https://carlachallenge.org/results-challenge-2019/) 
