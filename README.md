@@ -1,5 +1,16 @@
-*This post describes our recent work on Deep Reinforcement Learning on 
-the benchmark Atari. We noticed that training and evaluation
+*This post describes our recent work on Deep Reinforcement Learning (DRL) on 
+the benchmark Atari. DRL is a learning scheme based on trial-and-error
+in which an agent learns an optimal policy from its own experiments 
+and a reward signal. The goal of the agent is to maximize the sum of
+accumulated rewards and thus the agent needs to think about sequence
+of actions rather than instantaneous ones. DRL appears today as one
+of the closest paradigm to Artificial General Intelligence.
+The Atari benchmark is really valuable for evaluating general
+AI algorithm as it includes more than 50 games with highly variable 
+task to solve from simple paddle
+control in the ball game Pong to complex labyrinth exploration in 
+Montezuma's Revenge which remains unsolved by general algorithms up to 
+today. Hovewer, we noticed that training and evaluation
 procedures on Atari could be different from paper to paper and 
 thus leading to bias in comparison. Moreover this was leading 
 to difficulties to reproduce results of published works as some
@@ -23,7 +34,7 @@ let agents compete against the best humans. Recent examples for DRL
 include the victory of [AlphaGo versus Lee Sedol](https://deepmind.com/alphago-korea) for Go, 
 [OpenAI Five](https://openai.com/blog/openai-five/)
 on Dota 2 or [AlphaStar versus Mana](https://deepmind.com/blog/article/alphastar-mastering-real-time-strategy-game-starcraft-ii)
- for StarCraft 2.That's why one of 
+for StarCraft 2. That's why one of 
 the most used metric for evaluating RL agents on Atari is to 
 compare them to the human baseline introduced in [DQN](https://www.nature.com/articles/nature14236). <br/><br/>
 Previous works use the normalized human
@@ -37,7 +48,7 @@ baseline is far from being representative of the
 best human player, which means that using it to
 claim superhuman performance is misleading.<br/><br/>
 The current world records are available online
-for 58 of the 61 evaluated Atari game. On VideoPinball for exemple, the
+for 58 of the 61 evaluated Atari game. On VideoPinball for example, the
 world record is 50 000 times higher than the human baseline of DQN!
 Evaluating these world records scores using the usual
 human normalized score has a median of 4 400% and a mean of 
@@ -55,7 +66,7 @@ remaining between best human players and DRL agents! <br/>
 And the results are clear,
 Rainbow reachs only a median human-normalized score of 3% (see 
 Figure 2 below) meaning that for 
-half of Atari games, the agent doenst even reach 3% of the way from 
+half of Atari games, the agent doesn't even reach 3% of the way from 
 random to best human run ever! <br/><br/>
 We made a [video](www.todovideo.com) with
 agents previously  claimed as above human-level but far 
@@ -129,9 +140,9 @@ Then we implemented a new algorithm, R-IQN, by replacing the C51
 algorithm (which is one of the 6 components 
 of Rainbow) by Implicit Quantile Network (IQN).<br/><br/>
 As showed in the graph below, R-IQN raise better performance than Rainbow
-and thus become the new state-of-the-art on Atari. However, we 
-didn't have enough computational power to run multiple seeds and more
-runs are needed to make a more confident SOTA claim.
+and thus become the new state-of-the-art on Atari. However, to make a 
+more confident SOTA claim it should be run multiple times with 
+different seeds.
 
 <p align="center">
 <img src="https://github.com/marintoro/Rainbow/blob/master/images_README/Rainbow_vs_RIQN.png" alt="drawing" width="800"/>
@@ -155,7 +166,7 @@ performance. This amount may be practically impossible to reach if the
 environment is real-time and you cannot collect data from multiple 
 environments at the same time!<br/>
 Following the ideas from the paper Ape-X, we use [REDIS](https://redis.io/)
-as a side servor
+as a side server
 to store our replay memory. Multiple actors will act in their own instances
 of the environment to fill as fast as they can the replay memory.
 Finally, the learner will sample from this replay memory (the learner is
@@ -170,7 +181,7 @@ alt="drawing" width="800"/>
 
 This scheme allowed us to use R-IQN Ape-X for the task of autonomous 
 driving using [CARLA](http://carla.org/) as environment. 
-That led me to win the
+That led us to win the
 [CARLA Challenge](https://carlachallenge.org/results-challenge-2019/) 
 on Track 2 *Cameras Only* showing the strength of R-IQN Ape-X as a 
 general algorithm.
