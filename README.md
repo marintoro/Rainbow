@@ -17,8 +17,7 @@ Deep Reinforcement Learning is a learning scheme based on trial-and-error
 in which an agent learns an optimal policy from its own experiments 
 and a reward signal. The goal of the agent is to maximize the sum of
 accumulated rewards and thus the agent needs to think about sequence
-of actions rather than instantaneous ones. DRL appears today as one
-of the closest paradigm to Artificial General Intelligence.
+of actions rather than instantaneous ones.
 The Atari benchmark is really valuable for evaluating general
 AI algorithm as it includes more than 50 games with highly variable 
 task to solve from simple paddle
