@@ -1,5 +1,19 @@
-*This post describes our recent work on Deep Reinforcement Learning (DRL) on 
-the benchmark Atari. DRL is a learning scheme based on trial-and-error
+*This post describes our recent [work](https://arxiv.org/pdf/1908.04683.pdf) on Deep Reinforcement Learning (DRL) on 
+the benchmark Atari.
+DRL appears today as one of the closest paradigm to Artificial General 
+Intelligence and large progress in this field has been enabled by the 
+popular Atari benchmark. However, training and evaluation protocols on 
+Atari vary across papers leading to biased comparisons, difficulty in 
+reproducing results and in estimating the true contributions of the methods. 
+Here we attempt to mitigate this problem with SABER: a Standardized Atari 
+BEnchmark for general Reinforcement learning algorithms. SABER allows us to 
+compare multiple methods under the same conditions against a human baseline 
+and observe that previous claims of superhuman performance on DRL do not 
+hold. We propose a new state-of-the-art algorithm R-IQN combining Rainbow 
+with Implicit Quantile Networks (IQN). 
+[Code](https://github.com/valeoai/rainbow-iqn-apex) is available.*
+
+Deep Reinforcement Learning is a learning scheme based on trial-and-error
 in which an agent learns an optimal policy from its own experiments 
 and a reward signal. The goal of the agent is to maximize the sum of
 accumulated rewards and thus the agent needs to think about sequence
@@ -10,7 +24,8 @@ AI algorithm as it includes more than 50 games with highly variable
 task to solve from simple paddle
 control in the ball game Pong to complex labyrinth exploration in 
 Montezuma's Revenge which remains unsolved by general algorithms up to 
-today. Hovewer, we noticed that training and evaluation
+today. <br/><br/>
+Hovewer, we noticed that training and evaluation
 procedures on Atari could be different from paper to paper and 
 thus leading to bias in comparison. Moreover this was leading 
 to difficulties to reproduce results of published works as some
@@ -24,7 +39,7 @@ Finally, we propose a new state-of-the-art algorithm R-IQN by
 combining the current state-of-the-art [Rainbow](https://arxiv.org/abs/1710.02298) along with Implicit 
 Quantile Networks ([IQN](https://arxiv.org/abs/1806.06923)). Last but not least, we released an open-source 
 [implementation](https://github.com/valeoai/rainbow-iqn-apex) of distributed R-IQN following the ideas from the 
-paper Ape-X!* 
+paper Ape-X! 
 
 DQN's human baseline vs human world record on Atari Games 
 ------------ 
@@ -68,7 +83,7 @@ Rainbow reachs only a median human-normalized score of 3% (see
 Figure 2 below) meaning that for 
 half of Atari games, the agent doesn't even reach 3% of the way from 
 random to best human run ever! <br/><br/>
-We made a [video](www.todovideo.com) with
+We made a [video](https://youtu.be/oH6P3ksYLek) with
 agents previously  claimed as above human-level but far 
 from the world record.
 When you actually look them playing, 
@@ -139,7 +154,7 @@ in our [paper](https://arxiv.org/abs/1908.04683).<br/>
 Then we implemented a new algorithm, R-IQN, by replacing the C51 
 algorithm (which is one of the 6 components 
 of Rainbow) by Implicit Quantile Network (IQN).<br/><br/>
-As showed in the graph below, R-IQN raise better performance than Rainbow
+As showed in the graph below, R-IQN raises better performance than Rainbow
 and thus become the new state-of-the-art on Atari. However, to make a 
 more confident SOTA claim it should be run multiple times with 
 different seeds.
@@ -154,17 +169,16 @@ Open-source implementation of distributed Rainbow-IQN: R-IQN Ape-X
 We released [our code](https://github.com/valeoai/rainbow-iqn-apex) of a
 distributed version of Rainbow-IQN following
 ideas from the paper Ape-X: Distributed Prioritized Experience Replay.<br/>
-The distributed part is really our main practical advantage over some existing RL
+The distributed part is our main practical advantage over some existing DRL
 repositories (particularly [Dopamine](https://github.com/google/dopamine)
-a really interesting open-source repository of DQN, C51, IQN and a 
+a popular open-source implementation of DQN, C51, IQN and a 
 *small-Rainbow* but in which all algorithms are single worker). <br/>
-Indeed, if you want to use DRL algorithms for other tasks (other than 
-Atari and MuJoCO), you will
-quickly be limited by the *speed* of your environment. DRL 
+Indeed, when using DRL algorithms for other tasks (other than 
+Atari and MuJoCO) a major bottleneck is the *speed* of your environment. DRL 
 algorithms often need a huge amount of data before reaching reasonable 
 performance. This amount may be practically impossible to reach if the
 environment is real-time and you cannot collect data from multiple 
-environments at the same time!<br/>
+environments at the same time.<br/>
 Following the ideas from the paper Ape-X, we use [REDIS](https://redis.io/)
 as a side server
 to store our replay memory. Multiple actors will act in their own instances
