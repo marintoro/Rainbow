@@ -9,7 +9,7 @@ Here we attempt to mitigate this problem with SABER: a Standardized Atari
 BEnchmark for general Reinforcement learning algorithms. SABER allows us to 
 compare multiple methods under the same conditions against a human baseline 
 and observe that previous claims of superhuman performance on DRL do not 
-hold. We propose a new state-of-the-art algorithm R-IQN combining Rainbow 
+hold. Finally, we propose a new state-of-the-art algorithm R-IQN combining Rainbow 
 with Implicit Quantile Networks (IQN). 
 [Code](https://github.com/valeoai/rainbow-iqn-apex) is available.*
 
@@ -18,9 +18,9 @@ in which an agent learns an optimal policy from its own experiments
 and a reward signal. The goal of the agent is to maximize the sum of
 accumulated rewards and thus the agent needs to think about sequence
 of actions rather than instantaneous ones.
-The Atari benchmark is really valuable for evaluating general
-AI algorithm as it includes more than 50 games with highly variable 
-task to solve from simple paddle
+The Atari benchmark is valuable for evaluating general
+AI algorithms as it includes more than 50 games displaying high variability in the 
+task to solve, ranging from simple paddle
 control in the ball game Pong to complex labyrinth exploration in 
 Montezuma's Revenge which remains unsolved by general algorithms up to 
 today. <br/><br/>
@@ -83,12 +83,12 @@ Figure 2 below) meaning that for
 half of Atari games, the agent doesn't even reach 3% of the way from 
 random to best human run ever! <br/><br/>
 We made a [video](https://youtu.be/oH6P3ksYLek) with
-agents previously  claimed as above human-level but far 
+agents previously claimed as above human-level but far 
 from the world record.
-When you actually look them playing, 
-they fail badly to understand the game, sometimes they just don't explore
+By taking a closer look at the AI playing, we discovered that on most of Atari games
+DRL agents fail to understand the goal of the game. Sometimes they just don't explore
 other levels than the initial one, sometimes they are stuck in a loop
-giving small amount of reward etc... A really nice example of this is the game
+giving small amount of reward etc... A compelling example of this is the game
 *Riverraid*. On this game, the agent must shoot everything and take fuel
 to survive: the agent die if there is a collision with an enemy or if out
 of fuel. But as shooting fuel actually gives point, the agent doesn't
@@ -152,7 +152,8 @@ necessity of a common and standardized benchmark, more details can be found
 in our [paper](https://arxiv.org/abs/1908.04683).<br/>
 Then we implemented a new algorithm, R-IQN, by replacing the C51 
 algorithm (which is one of the 6 components 
-of Rainbow) by Implicit Quantile Network (IQN).<br/><br/>
+of Rainbow) by Implicit Quantile Network (IQN). This improvement was natural
+as IQN is a major improvement over C51 which was already part of Rainbow.<br/><br/>
 As showed in the graph below, R-IQN raises better performance than Rainbow
 and thus become the new state-of-the-art on Atari. However, to make a 
 more confident SOTA claim it should be run multiple times with 
@@ -173,7 +174,7 @@ repositories (particularly [Dopamine](https://github.com/google/dopamine)
 a popular open-source implementation of DQN, C51, IQN and a 
 *small-Rainbow* but in which all algorithms are single worker). <br/>
 Indeed, when using DRL algorithms for other tasks (other than 
-Atari and MuJoCO) a major bottleneck is the *speed* of your environment. DRL 
+Atari and MuJoCO) a major bottleneck is the *speed* of the environment. DRL 
 algorithms often need a huge amount of data before reaching reasonable 
 performance. This amount may be practically impossible to reach if the
 environment is real-time and you cannot collect data from multiple 
@@ -185,7 +186,8 @@ of the environment to fill as fast as they can the replay memory.
 Finally, the learner will sample from this replay memory (the learner is
 actually totally independant of the environment) to make the backprop.
 The learner will also periodically update the weight of each actors
-as shown in schema below.<br/>
+as shown in schema below (image taken from the 
+[original Ape-X paper](https://arxiv.org/abs/1803.00933)).<br/>
 
 <p align="center">
 <img src="https://github.com/marintoro/Rainbow/blob/master/images_README/Apex_image_TOREMAKE.png" 
