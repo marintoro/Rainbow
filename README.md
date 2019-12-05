@@ -115,14 +115,17 @@ fairly. For example, in easy games (e.g. Atlantis), the agent never dies
 and the score is more or less linear to the allowed time: the reported 
 score will be 6 times higher if capped at 30 minutes instead
 of 5 minutes.<br/><br/>
-We argue that the time cap can make the performance comparison non 
-significant. On many games (e.g. Atlantis, Video Pinball, Enduro) the 
+Another issue with this time cap comes from the fact that some games are designed 
+for much longer gameplay than 5 or 30 minutes.
+On those games (e.g. Atlantis, Video Pinball, Enduro) the 
 scores reported of Ape-X, Rainbow and IQN are almost exactly the same. 
 This is because all agents reach the time limit and get the maximum
 score possible in 30 minutes: the difference in scores is due to minor 
-variations, not algorithmic difference. As a consequence, the more 
+variations, not algorithmic difference and thus the comparison is not significant.
+As a consequence, the more 
 successful agents are, the more games are incomparable
-because they reach the maximum possible score in the time cap.<br/><br/>
+because they reach the maximum possible score in the time cap while still being
+far behind human world record.<br/><br/>
 This parameter can also be a source of ambiguity and error. The best 
 score on Atlantis (2,311,815) is reported by Proximal Policy 
 Optimization by Schulman et al. but this score is almost certainly
@@ -146,14 +149,25 @@ Rainbow-IQN: Comparison with Rainbow on SABER
 ------------ 
 
 We first re-implemented the current state-of-the-art Rainbow and evaluated 
-it on SABER. We discovered the same algorithm with different evaluation
-procedures can lead to really different results. This showed again the 
+it on SABER. We discovered the same algorithm under different evaluation
+settings can lead to significantly different results. This showed again the 
 necessity of a common and standardized benchmark, more details can be found
-in our [paper](https://arxiv.org/abs/1908.04683).<br/>
+in our [paper](https://arxiv.org/abs/1908.04683).<br/><br/>
 Then we implemented a new algorithm, R-IQN, by replacing the C51 
 algorithm (which is one of the 6 components 
-of Rainbow) by Implicit Quantile Network (IQN). This improvement was natural
-as IQN is a major improvement over C51 which was already part of Rainbow.<br/><br/>
+of Rainbow) by Implicit Quantile Network (IQN). 
+Both C51 and IQN belong to the field of 
+*Distributional RL* which aims to predict the full distribution of
+the Q-value function instead of just predicting the mean of it. The
+fundamental difference between this two algorithms is how they parametrize
+the Q-value distribution. C51, which is the first algorithm of *Distributional RL*,
+approximates the Q-value as a categorical distribution with fixed support and just
+learns the mass to attribute to each category. On the other hand, IQN approximates 
+the Q-value with quantile regression and both the support and the mass is learned
+resulting in a major improvement in performance and data-efficiency over C51.
+As IQN arises much better performance than C51 while still designed for 
+the same goal (predict the full distribution of the Q-function),
+combining Rainbow with IQN is relevant and natural.<br/><br/>
 As showed in the graph below, R-IQN raises better performance than Rainbow
 and thus become the new state-of-the-art on Atari. However, to make a 
 more confident SOTA claim it should be run multiple times with 
